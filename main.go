@@ -6,12 +6,39 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-/*type User struct {
+type User struct {
+	ID        int64
 	FirstName string
 	LastName  string
 	Gender    string
 	Age       int32
-}*/
+}
+
+type sqlUser struct {
+	Conn *sql.DB
+}
+
+func NewSqlUser(Conn *sql.DB) *sqlUser {
+	return &sqlUser{Conn}
+}
+
+func (s *sqlUser) Fetch(user *User) User {
+	return User{
+		ID: 0,
+	}
+}
+
+func (s *sqlUser) Insert(user *User) {
+	return
+}
+
+func (s *sqlUser) Update(user *User) {
+	return
+}
+
+func (s *sqlUser) Delete(id int64) {
+	return
+}
 
 func main() {
 	db, err := sql.Open("sqlite3", "users_db.db")
